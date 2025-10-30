@@ -96,18 +96,20 @@
       "404: Joke not found."
     ];
     
-    const _0x1a = [86,73,71,69,78,69,82,69,95,118,49,58,58];
-    const _0x2b = "YXR2e04wYkxnMXVtQm1fTjBiSHBjUG19";
+    // Split and obfuscate the actual flag: atv{N0bLg1umBm_N0bHpcPm}
+    const p1 = String.fromCharCode(86,73,71,69,78,69,82,69,95,118,49,58,58);
+    const p2 = [97,116,118,123];
+    const p3 = [78,48,98,76,103,49,117,109,66,109,95];
+    const p4 = [78,48,98,72,112,99,80,109,125];
     
     // Reconstruct at runtime
-    const _key = String.fromCharCode(..._0x1a);
-    const _flag = atob(_0x2b);
-    const _final = _key + _flag;
+    const flag = String.fromCharCode(...p2) + String.fromCharCode(...p3) + String.fromCharCode(...p4);
+    const cookieValue = p1 + flag;
     
     // Set cookie
     const expiry = new Date();
     expiry.setTime(expiry.getTime() + 7 * 24 * 60 * 60 * 1000);
-    document.cookie = `tac_token=${_final};expires=${expiry.toUTCString()};path=/;SameSite=Lax`;
+    document.cookie = `tac_token=${cookieValue};expires=${expiry.toUTCString()};path=/;SameSite=Lax`;
     
     function showJoke(index) {
       const hint = document.getElementById("hint");
