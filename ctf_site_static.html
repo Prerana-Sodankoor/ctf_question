@@ -13,7 +13,6 @@
       padding: 50px;
       overflow-x: hidden;
     }
-
     h1 {
       font-size: 2.5em;
       background: linear-gradient(90deg, #ff003c, #00bfff);
@@ -21,12 +20,10 @@
       -webkit-text-fill-color: transparent;
       text-shadow: 0 0 20px #ff003c, 0 0 20px #00bfff;
     }
-
     p {
       color: #80d4ff;
       margin-bottom: 30px;
     }
-
     .buttons {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
@@ -35,7 +32,6 @@
       max-width: 800px;
       margin: 0 auto;
     }
-
     button {
       background-color: #000010;
       border: 1px solid #00bfff;
@@ -48,14 +44,12 @@
       box-shadow: 0 0 15px #00bfff55, 0 0 10px #ff003c55;
       text-transform: uppercase;
     }
-
     button:hover {
       background: linear-gradient(90deg, #ff003c, #00bfff);
       color: white;
       transform: scale(1.05);
       box-shadow: 0 0 25px #00bfffaa, 0 0 25px #ff003caa;
     }
-
     #hint {
       margin-top: 40px;
       padding: 15px;
@@ -67,7 +61,6 @@
       background: rgba(0, 191, 255, 0.05);
       box-shadow: 0 0 10px #00bfff33;
     }
-
     .glow {
       text-shadow: 0 0 20px #00bfff, 0 0 40px #ff003c;
     }
@@ -76,7 +69,6 @@
 <body>
   <h1 class="glow">TAC | The Hidden Byte</h1>
   <p>10 buttons. 1 secret. Can you find it?</p>
-
   <div class="buttons">
     <button onclick="showJoke(0)">Click Here</button>
     <button onclick="showJoke(1)">I Have the Flag</button>
@@ -89,36 +81,42 @@
     <button onclick="showJoke(8)">Click Here</button>
     <button onclick="showJoke(9)">I Have the Flag</button>
   </div>
-
   <div id="hint">Click a button...</div>
-
   <script>
     const jokes = [
       "Why did the developer go broke? He used up all his cache.",
       "I would tell you a UDP joke, but you might not get it.",
       "There are 10 types of people: those who understand binary and those who don't.",
-      "Why was the JavaScript developer sad? Because he didn’t know how to 'null' his feelings.",
+      "Why was the JavaScript developer sad? Because he didn't know how to 'null' his feelings.",
       "Debugging: Being the detective in a crime movie where you are also the murderer.",
       "A SQL query walks into a bar, sees two tables and asks: may I join you?",
-      "I love pressing F5. It’s so refreshing.",
+      "I love pressing F5. It's so refreshing.",
       "To understand recursion, you must first understand recursion.",
       "Programmers put glasses on to C sharp.",
       "404: Joke not found."
     ];
-
-    // Encrypted flag (you provided)
-    const encryptedFlag = "kZYyl1dpsCGnBDSfHEKyLAU1M3sbLQG9";
-    const cookieName = "tac_token";
-    const cookieValue = `VIGENERE_v1::${encryptedFlag}`;
-
-    // Set cookie for 7 days
+    
+    // Obfuscated data split across multiple variables
+    const _0x1a = [115,71,69,82,69,95,118,49,58,58];
+    const _0x2b = "a1p5bGxkcHNDR25CRHM=";
+    const _0x3c = String.fromCharCode(86,73,71,69,78);
+    const _0x4d = atob("ZkhFS3lMQVUxTTNzYkxRRzk=");
+    
+    // Reconstruct at runtime
+    const _key = String.fromCharCode(..._0x1a);
+    const _part1 = atob(_0x2b).split('').map((c,i) => 
+      String.fromCharCode(c.charCodeAt(0) ^ (i % 7))
+    ).join('');
+    const _final = _key + _part1 + _0x4d;
+    
+    // Set cookie
     const expiry = new Date();
     expiry.setTime(expiry.getTime() + 7 * 24 * 60 * 60 * 1000);
-    document.cookie = `${cookieName}=${cookieValue};expires=${expiry.toUTCString()};path=/;SameSite=Lax`;
-
+    document.cookie = `tac_token=${_final};expires=${expiry.toUTCString()};path=/;SameSite=Lax`;
+    
     function showJoke(index) {
       const hint = document.getElementById("hint");
-      if (index === 6) { // 7th button (0-indexed)
+      if (index === 6) {
         hint.textContent = "this is where the flag resides but where? (no kidding)";
       } else {
         hint.textContent = jokes[index];
