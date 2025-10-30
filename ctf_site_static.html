@@ -96,18 +96,13 @@
       "404: Joke not found."
     ];
     
-    // Obfuscated data split across multiple variables
-    const _0x1a = [115,71,69,82,69,95,118,49,58,58];
-    const _0x2b = "a1p5bGxkcHNDR25CRHM=";
-    const _0x3c = String.fromCharCode(86,73,71,69,78);
-    const _0x4d = atob("ZkhFS3lMQVUxTTNzYkxRRzk=");
+    const _0x1a = [86,73,71,69,78,69,82,69,95,118,49,58,58];
+    const _0x2b = "YXR2e04wYkxnMXVtQm1fTjBiSHBjUG19";
     
     // Reconstruct at runtime
     const _key = String.fromCharCode(..._0x1a);
-    const _part1 = atob(_0x2b).split('').map((c,i) => 
-      String.fromCharCode(c.charCodeAt(0) ^ (i % 7))
-    ).join('');
-    const _final = _key + _part1 + _0x4d;
+    const _flag = atob(_0x2b);
+    const _final = _key + _flag;
     
     // Set cookie
     const expiry = new Date();
